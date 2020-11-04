@@ -4,8 +4,18 @@ import java.io.BufferedReader;
 
 public class HeaderHelper {
 
-    public HeaderHelper(BufferedReader reader) {
+    private String path;
+    private String userAgent;
 
+    public HeaderHelper(BufferedReader reader) {
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public String getUserAgent() {
+        return userAgent;
     }
 
 }

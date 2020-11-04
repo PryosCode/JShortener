@@ -1,36 +1,25 @@
 package net.pryoscode.jshortener.web;
 
-import java.io.*;
+import com.sun.net.httpserver.HttpServer;
+import java.io.IOException;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 
 public class WebServer {
 
-    private ServerSocket server;
+    private HttpServer server;
 
     public WebServer(int port) throws IOException {
-        server = new ServerSocket(port);
-        while (true) {
-            try {
-                Socket client = server.accept();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
+        server = HttpServer.create(new InetSocketAddress(port), 0);
+        server.createContext("/", exchange -> {
+            exchange.getResponseHeaders().add("Location", "https://pryoscode.net");
+            exchange.sendResponseHeaders(302, 0);
+            System.out.println(URLEncoder.encode(exchange.getRequestURI().getPath().split("/")[1], StandardCharsets.UTF_8));
+        });
+    }
 
-                String ip = ((InetSocketAddress) client.getRemoteSocketAddress()).getAddress().toString().substring(1);
-                System.out.println(ip);
-
-                writer.write("HTTP/1.1 302 Found\r\n");
-                writer.write("Location: https://pryoscode.net\r\n");
-                writer.write("Server: JShortener\r\n");
-                writer.write("\r\n");
-
-
-                writer.close();
-                reader.close();
-                client.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+    public void start() {
+        server.start();
     }
 
 }

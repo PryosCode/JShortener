@@ -5,7 +5,8 @@ import net.pryoscode.jshortener.web.WebServer;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        new WebServer(80);
+        WebServer server = new WebServer(80);
+        server.start();
     }
 
 }
