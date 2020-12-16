@@ -16,16 +16,16 @@ public class Config {
     private final String dbPassword;
 
     public Config() {
-        webPort = getEnv("WEB_PORT", 80, Integer.class);
-        webStatus = getEnv("WEB_STATUS", 302, Integer.class);
-        webRoot = getEnv("WEB_ROOT", "https://github.com/PryosCode/JShortener", String.class);
-        web404 = getEnv("WEB_404", "https://github.com/PryosCode/JShortener", String.class);
+        webPort = getEnv("WEB_PORT", 80);
+        webStatus = getEnv("WEB_STATUS", 302);
+        webRoot = getEnv("WEB_ROOT", "https://github.com/PryosCode/JShortener");
+        web404 = getEnv("WEB_404", "https://github.com/PryosCode/JShortener");
 
-        dbHost = getEnv("DB_HOST", "127.0.0.1", String.class);
-        dbPort = getEnv("DB_PORT", 3306, Integer.class);
-        dbName = getEnv("DB_NAME", "jshortener", String.class);
-        dbUser = getEnv("DB_USER", "root", String.class);
-        dbPassword = getEnv("DB_PASSWORD", "", String.class);
+        dbHost = getEnv("DB_HOST", "127.0.0.1");
+        dbPort = getEnv("DB_PORT", 3306);
+        dbName = getEnv("DB_NAME", "jshortener");
+        dbUser = getEnv("DB_USER", "root");
+        dbPassword = getEnv("DB_PASSWORD", "");
     }
 
     public int getWebPort() {
@@ -64,11 +64,18 @@ public class Config {
         return dbPassword;
     }
 
-    private <T> T getEnv(String name, T def, Class<T> type) {
-        T env = (T) System.getenv((PREFIX + "_" + name).toUpperCase());
-        if(env == null)
-            return def;
-        return env;
+    private <T> T getEnv(String name, T def) {
+        String term = (PREFIX + "_" + name).toUpperCase();
+
+        T env = (T) System.getenv(term);
+        if(env != null)
+            return env;
+
+        T prop = (T) System.getProperty(term);
+        if(prop != null)
+            return prop;
+
+        return def;
     }
 
 }
