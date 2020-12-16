@@ -23,8 +23,11 @@ public class WebServer {
                 Link link = database.getLink(slug);
                 database.addClick(link.getId(), client);
 
+                Log.info(slug + " -> " + link.getUrl());
+
                 request.getResponseHeaders().add("Location", link.getUrl());
                 request.sendResponseHeaders(config.getWebRedirect(), 0);
+                request.close();
             } catch (Exception e) {
                 Log.severe(e);
             }

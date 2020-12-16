@@ -22,4 +22,5 @@ services:
     ports:
     - 80:80
     environment:
-      JS_DB_PORT:
+      JS_DB_USER: "jshortener"
+      JS_DB_PASSWORD: "0123456789"

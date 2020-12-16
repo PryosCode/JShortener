@@ -13,6 +13,15 @@ public class Log {
         LogManager.getLogManager().reset();
         logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
         logger.addHandler(new LogHandler());
+        welcome();
+    }
+
+    private static void welcome() {
+        info("       _______ __               __                      ");
+        info("      / / ___// /_  ____  _____/ /____  ____  ___  _____");
+        info(" __  / /\\__ \\/ __ \\/ __ \\/ ___/ __/ _ \\/ __ \\/ _ \\/ ___/");
+        info("/ /_/ /___/ / / / / /_/ / /  / /_/  __/ / / /  __/ /    ");
+        info("\\____//____/_/ /_/\\____/_/   \\__/\\___/_/ /_/\\___/_/     ");
     }
 
     public static void info(String message) {
