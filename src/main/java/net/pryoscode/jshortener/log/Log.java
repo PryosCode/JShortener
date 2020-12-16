@@ -40,7 +40,6 @@ public class Log {
         logger.severe(exception.getMessage());
         for(StackTraceElement trace : exception.getStackTrace())
             logger.severe(trace.getFileName() + "/" + trace.getClassName() + "#" + trace.getMethodName() + ":" + trace.getLineNumber());
-        exception.printStackTrace();
     }
 
 }

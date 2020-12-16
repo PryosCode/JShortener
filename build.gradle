@@ -1,5 +1,17 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:5.2.0"
+    }
+}
+
 plugins {
     id 'java'
+    id "com.github.johnrengelman.shadow" version "5.2.0"
 }
 
 group 'net.pryoscode'
@@ -7,6 +19,16 @@ version '1.0'
 
 repositories {
     mavenCentral()
+}
+
+shadowJar {
+    manifest {
+        attributes 'Implementation-Title': project.name,
+                'Implementation-Version': project.version,
+                'Main-Class': project.group + '.' + project.name.toLowerCase() + '.Main'
+    }
+    configurations = [project.configurations.compile, project.configurations.runtime]
+    archiveFileName = project.name + '.jar'
 }
 
 dependencies {
