@@ -33,8 +33,7 @@ public class Database {
         PreparedStatement statement = connection.prepareStatement("SELECT ID, URL FROM LINKS WHERE SLUG = ?");
         statement.setString(1, slug);
         ResultSet result = statement.executeQuery();
-        result.next();
-        return new Link(result.getInt(1), result.getString(2));
+        return result.next() ? new Link(result.getInt(1), result.getString(2)) : null;
     }
 
     public void addClick(int id, WebClient client) throws SQLException {

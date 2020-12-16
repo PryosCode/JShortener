@@ -17,16 +17,23 @@ public class WebServer {
         server = HttpServer.create(new InetSocketAddress(config.getWebPort()), 0);
         server.createContext("/", request -> {
             try {
-                String slug = URLEncoder.encode(request.getRequestURI().getPath().split("/")[1], StandardCharsets.UTF_8.toString());
-                WebClient client = new WebClient(request.getRemoteAddress(), request.getRequestHeaders());
+                String[] uri = request.getRequestURI().getPath().split("/");
+                if(uri.length > 0) {
+                    String slug = URLEncoder.encode(uri[1], StandardCharsets.UTF_8.toString());
+                    WebClient client = new WebClient(request.getRemoteAddress(), request.getRequestHeaders());
 
-                Link link = database.getLink(slug);
-                database.addClick(link.getId(), client);
-
-                Log.info(slug + " -> " + link.getUrl());
-
-                request.getResponseHeaders().add("Location", link.getUrl());
-                request.sendResponseHeaders(config.getWebRedirect(), 0);
+                    Link link = database.getLink(slug);
+                    if (link == null) {
+                        request.getResponseHeaders().add("Location", config.getWeb404());
+                    } else {
+                        database.addClick(link.getId(), client);
+                        Log.info(slug + " -> " + link.getUrl());
+                        request.getResponseHeaders().add("Location", link.getUrl());
+                    }
+                } else {
+                    request.getResponseHeaders().add("Location", config.getWebRoot());
+                }
+                request.sendResponseHeaders(config.getWebStatus(), 0);
                 request.close();
             } catch (Exception e) {
                 Log.severe(e);

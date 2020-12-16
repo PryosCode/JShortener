@@ -10,7 +10,7 @@ public class WebClient {
 
     public WebClient(InetSocketAddress socket, Headers headers) {
         this.ip = socket.getAddress().toString().substring(1);
-        this.userAgent = headers.get("User-agent").get(0);
+        this.userAgent = headers.getFirst("User-agent");
     }
 
     public String getIp() {
