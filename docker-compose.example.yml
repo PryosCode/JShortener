@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+
+  database:
+    image: mariadb:latest
+    container_name: Database
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: jshortener
+      MYSQL_PASSWORD: 0123456789
+      MYSQL_ROOT_PASSWORD: 9876543210
+    volumes:
+      - "./database:/var/lib/mysql:rw"
+
+  jshortener:
+    image: pryoscode/jshortener:latest
+    container_name: JShortener
+    restart: always
+    ports:
+    - 80:80
+    environment:
+      JS_DB_PORT:
