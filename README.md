@@ -24,7 +24,7 @@ java -jar -DJS_DB_USER="jshortener" -DJS_DB_PASSWORD="0123456789" JShortener.jar
 | JS_WEB_STATUS  | 302                                     |
 | JS_WEB_ROOT    | https://github.com/PryosCode/JShortener |
 | JS_WEB_404     | https://github.com/PryosCode/JShortener |
-| JS_DB_HOST     | database                                |
+| JS_DB_HOST     | 127.0.0.1                               |
 | JS_DB_PORT     | 3306                                    |
-| JS_DB_USER     | jshortener                              |
-| JS_DB_PASSWORD | 0123456789                              |
+| JS_DB_USER     | root                                    |
+| JS_DB_PASSWORD |                                         |
