@@ -33,6 +33,7 @@ public class WebServer {
                 } else {
                     request.getResponseHeaders().add("Location", config.getWebRoot());
                 }
+                request.getResponseHeaders().add("X-Forwarded-Proto", config.getWebForwardedProto());
                 request.sendResponseHeaders(config.getWebStatus(), 0);
                 request.close();
             } catch (Exception e) {

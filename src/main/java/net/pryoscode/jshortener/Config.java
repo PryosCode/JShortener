@@ -8,6 +8,7 @@ public class Config {
     private final int webStatus;
     private final String webRoot;
     private final String web404;
+    private final String webForwardedProto;
 
     private final String dbHost;
     private final int dbPort;
@@ -20,6 +21,7 @@ public class Config {
         webStatus = getEnv("WEB_STATUS", 302);
         webRoot = getEnv("WEB_ROOT", "https://github.com/PryosCode/JShortener");
         web404 = getEnv("WEB_404", "https://github.com/PryosCode/JShortener");
+        webForwardedProto = getEnv("WEB_FORWARDED_PROTO", "http");
 
         dbHost = getEnv("DB_HOST", "127.0.0.1");
         dbPort = getEnv("DB_PORT", 3306);
@@ -42,6 +44,10 @@ public class Config {
 
     public String getWeb404() {
         return web404;
+    }
+
+    public String getWebForwardedProto() {
+        return webForwardedProto;
     }
 
     public String getDbHost() {
