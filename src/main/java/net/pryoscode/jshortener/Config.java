@@ -8,7 +8,6 @@ public class Config {
     private final int webStatus;
     private final String webRoot;
     private final String web404;
-    private final String webForwardedProto;
 
     private final String dbHost;
     private final int dbPort;
@@ -17,17 +16,16 @@ public class Config {
     private final String dbPassword;
 
     public Config() {
-        webPort = getEnv("WEB_PORT", 80);
-        webStatus = getEnv("WEB_STATUS", 302);
-        webRoot = getEnv("WEB_ROOT", "https://github.com/PryosCode/JShortener");
-        web404 = getEnv("WEB_404", "https://github.com/PryosCode/JShortener");
-        webForwardedProto = getEnv("WEB_FORWARDED_PROTO", "http");
+        webPort = getEnvInt("WEB_PORT", 80);
+        webStatus = getEnvInt("WEB_STATUS", 302);
+        webRoot = getEnvString("WEB_ROOT", "https://github.com/PryosCode/JShortener");
+        web404 = getEnvString("WEB_404", "https://github.com/PryosCode/JShortener");
 
-        dbHost = getEnv("DB_HOST", "127.0.0.1");
-        dbPort = getEnv("DB_PORT", 3306);
-        dbName = getEnv("DB_NAME", "jshortener");
-        dbUser = getEnv("DB_USER", "root");
-        dbPassword = getEnv("DB_PASSWORD", "");
+        dbHost = getEnvString("DB_HOST", "127.0.0.1");
+        dbPort = getEnvInt("DB_PORT", 3306);
+        dbName = getEnvString("DB_NAME", "jshortener");
+        dbUser = getEnvString("DB_USER", "root");
+        dbPassword = getEnvString("DB_PASSWORD", "");
     }
 
     public int getWebPort() {
@@ -44,10 +42,6 @@ public class Config {
 
     public String getWeb404() {
         return web404;
-    }
-
-    public String getWebForwardedProto() {
-        return webForwardedProto;
     }
 
     public String getDbHost() {
@@ -70,18 +64,23 @@ public class Config {
         return dbPassword;
     }
 
-    private <T> T getEnv(String name, T def) {
+    private String getEnvString(String name, String def) {
         String term = (PREFIX + "_" + name).toUpperCase();
 
-        T env = (T) System.getenv(term);
+        String env = System.getenv(term);
         if(env != null)
             return env;
 
-        T prop = (T) System.getProperty(term);
+        String prop = System.getProperty(term);
         if(prop != null)
             return prop;
 
         return def;
+    }
+
+    private int getEnvInt(String name, int def) {
+        String env = getEnvString(name, String.valueOf(def));
+        return env == null ? def : Integer.parseInt(env);
     }
 
 }

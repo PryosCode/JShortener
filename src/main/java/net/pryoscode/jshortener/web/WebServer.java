@@ -21,7 +21,7 @@ public class WebServer {
                 if(uri.length > 0) {
                     String slug = URLEncoder.encode(uri[1], StandardCharsets.UTF_8.toString());
                     WebClient client = new WebClient(request.getRemoteAddress(), request.getRequestHeaders());
-
+                    
                     Link link = database.getLink(slug);
                     if (link == null) {
                         request.getResponseHeaders().add("Location", config.getWeb404());
@@ -33,7 +33,6 @@ public class WebServer {
                 } else {
                     request.getResponseHeaders().add("Location", config.getWebRoot());
                 }
-                request.getResponseHeaders().add("X-Forwarded-Proto", config.getWebForwardedProto());
                 request.sendResponseHeaders(config.getWebStatus(), 0);
                 request.close();
             } catch (Exception e) {
