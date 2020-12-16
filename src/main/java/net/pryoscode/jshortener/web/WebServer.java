@@ -1,20 +1,32 @@
 package net.pryoscode.jshortener.web;
 
 import com.sun.net.httpserver.HttpServer;
+import net.pryoscode.jshortener.log.Log;
+import net.pryoscode.jshortener.sql.Database;
+import net.pryoscode.jshortener.sql.Link;
 import java.io.IOException;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 
 public class WebServer {
 
-    private HttpServer server;
+    private final HttpServer server;
 
-    public WebServer(int port) throws IOException {
+    public WebServer(final Database database, final int port) throws IOException {
         server = HttpServer.create(new InetSocketAddress(port), 0);
-        server.createContext("/", exchange -> {
-            exchange.getResponseHeaders().add("Location", "https://pryoscode.net");
-            exchange.sendResponseHeaders(302, 0);
-            System.out.println(URLEncoder.encode(exchange.getRequestURI().getPath().split("/")[1], StandardCharsets.UTF_8));
+        server.createContext("/", request -> {
+            try {
+                String slug = URLEncoder.encode(request.getRequestURI().getPath().split("/")[1], "UTF-8");
+                WebClient client = new WebClient(request.getRemoteAddress(), request.getRequestHeaders());
+
+                Link link = database.getLink(slug);
+                database.addClick(link.getId(), client);
+
+                request.getResponseHeaders().add("Location", link.getUrl());
+                request.sendResponseHeaders(302, 0);
+            } catch (Exception e) {
+                Log.severe(e);
+            }
         });
     }
 

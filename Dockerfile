@@ -1,5 +1,6 @@
 FROM openjdk:8-jre
 
-EXPOSE 80
-
-CMD [""]
+WORKDIR /root/
+EXPOSE 8080
+ENTRYPOINT [ "java", "-jar", "JShortener.jar" ]
+CMD [ "" ]
