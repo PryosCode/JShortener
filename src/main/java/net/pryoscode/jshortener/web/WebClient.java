@@ -1,6 +1,8 @@
 package net.pryoscode.jshortener.web;
 
 import com.sun.net.httpserver.Headers;
+import com.sun.net.httpserver.HttpExchange;
+
 import java.net.InetSocketAddress;
 
 public class WebClient {
@@ -8,9 +10,11 @@ public class WebClient {
     private String ip;
     private String userAgent;
 
-    public WebClient(InetSocketAddress socket, Headers headers) {
-        this.ip = socket.getAddress().toString().substring(1);
-        this.userAgent = headers.getFirst("User-agent");
+    public WebClient(HttpExchange request) {
+        ip = request.getRequestHeaders().getFirst("X-Forwarded-For");
+        if(ip == null)
+            ip = request.getRemoteAddress().getHostString();
+        this.userAgent = request.getRequestHeaders().getFirst("User-agent");
     }
 
     public String getIp() {

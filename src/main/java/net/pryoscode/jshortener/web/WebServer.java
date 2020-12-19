@@ -20,7 +20,7 @@ public class WebServer {
                 String[] uri = request.getRequestURI().getPath().split("/");
                 if(uri.length > 0) {
                     String slug = URLEncoder.encode(uri[1], StandardCharsets.UTF_8.toString());
-                    WebClient client = new WebClient(request.getRemoteAddress(), request.getRequestHeaders());
+                    WebClient client = new WebClient(request);
 
                     Link link = database.getLink(slug);
                     if (link == null) {
