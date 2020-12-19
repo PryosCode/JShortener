@@ -15,13 +15,13 @@ public class WebServer {
 
     public WebServer(final Database database, final Config config) throws IOException {
         server = HttpServer.create(new InetSocketAddress(config.getWebPort()), 0);
-        server.createContext("/", request -> {
+        server.createContext("/", request -> new Thread(() -> {
             try {
                 String[] uri = request.getRequestURI().getPath().split("/");
                 if(uri.length > 0) {
                     String slug = URLEncoder.encode(uri[1], StandardCharsets.UTF_8.toString());
                     WebClient client = new WebClient(request.getRemoteAddress(), request.getRequestHeaders());
-                    
+
                     Link link = database.getLink(slug);
                     if (link == null) {
                         request.getResponseHeaders().add("Location", config.getWeb404());
@@ -38,7 +38,8 @@ public class WebServer {
             } catch (Exception e) {
                 Log.severe(e);
             }
-        });
+            Thread.currentThread().stop();
+        }).start());
     }
 
     public void start() {
