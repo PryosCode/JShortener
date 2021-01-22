@@ -12,8 +12,6 @@ public class Main {
             Config config = new Config();
             Database database = new Database(config);
             database.setup();
-            //CommandHandler cmdHandler = new CommandHandler();
-            //cmdHandler.start();
             WebServer server = new WebServer(database, config);
             server.start();
         } catch (Exception e) {
