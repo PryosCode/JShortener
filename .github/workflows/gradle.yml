@@ -30,6 +30,6 @@ jobs:
       with:
         files: build/libs/JShortener.jar
         tag_name: ${{ env.GRADLE_VERSION }}
-        draft: true
+        prerelease: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
