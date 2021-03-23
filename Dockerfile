@@ -1,6 +1,12 @@
-FROM openjdk:8-jre
-
-WORKDIR /root/
-RUN wget https://github.com/PryosCode/JShortener/releases/download/v1.5/JShortener.jar
+FROM openjdk:11-jre-slim
+WORKDIR /jshortener
 EXPOSE 80
-ENTRYPOINT [ "java", "-jar", "JShortener.jar" ]
+
+RUN apt-get update
+RUN apt-get -y install git
+
+RUN git clone https://github.com/PryosCode/JShortener.git .
+RUN chmod +x gradlew
+RUN ./gradlew shadowJar
+
+ENTRYPOINT java -jar JShortener.jar

@@ -1,21 +1,10 @@
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "com.github.jengelman.gradle.plugins:shadow:5.2.0"
-    }
-}
-
 plugins {
-    id 'java'
-    id "com.github.johnrengelman.shadow" version "5.2.0"
+    id "java"
+    id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
-group 'net.pryoscode'
-version '1.5'
+group "net.pryoscode"
+version "1.6"
 
 repositories {
     mavenCentral()
@@ -23,14 +12,15 @@ repositories {
 
 shadowJar {
     manifest {
-        attributes 'Implementation-Title': project.name,
-                'Implementation-Version': project.version,
-                'Main-Class': project.group + '.' + project.name.toLowerCase() + '.Main'
+        attributes "Implementation-Title": project.name,
+                   "Implementation-Version": project.version,
+                   "Main-Class": project.group + "." + project.name.toLowerCase() + ".Main"
     }
-    configurations = [project.configurations.compile, project.configurations.runtime]
-    archiveFileName = project.name + '.jar'
+    project.configurations.implementation.canBeResolved = true
+    configurations = [project.configurations.implementation]
+    archiveFileName = project.name + ".jar"
 }
 
 dependencies {
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.22'
+    compile group: "mysql", name: "mysql-connector-java", version: "8.0.23"
 }
