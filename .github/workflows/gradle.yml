@@ -29,7 +29,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: build/libs/JShortener.jar
-        tag_name: ${{ env.GRADLE_VERSION }}
-        prerelease: true
+        tag_name: v${{ env.GRADLE_VERSION }}
+        draft: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
