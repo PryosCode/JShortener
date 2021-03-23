@@ -26,7 +26,6 @@ jobs:
 
     - name: Release
       uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
       with:
         files: build/libs/JShortener.jar
         tag_name: ./gradlew -q properties | grep "version:" | cut -d ' ' -f 2
