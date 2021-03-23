@@ -30,3 +30,5 @@ jobs:
         files: build/libs/JShortener.jar
         tag_name: ./gradlew -q properties | grep "version:" | cut -d ' ' -f 2
         draft: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
