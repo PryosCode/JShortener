@@ -1,3 +1,5 @@
+[![Build](https://github.com/PryosCode/JShortener/actions/workflows/gradle.yml/badge.svg)](https://github.com/PryosCode/JShortener/actions/workflows/gradle.yml)
+
 # JShortener
 
 Simple Java URL Shortener with easy deployment in mind.
