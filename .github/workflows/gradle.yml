@@ -23,12 +23,13 @@ jobs:
       run: |
         chmod +x gradlew
         ./gradlew shadowJar
+        ./gradlew -q properties | grep "version:" | cut -d ' ' -f 2 >> $GRADLE_VERSION
 
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         files: build/libs/JShortener.jar
-        tag_name: ./gradlew -q properties | grep "version:" | cut -d ' ' -f 2
+        tag_name: ${{ env.GRADLE_VERSION }}
         draft: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
