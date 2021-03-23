@@ -23,6 +23,7 @@ jobs:
       run: |
         chmod +x gradlew
         ./gradlew shadowJar
+        ./gradlew -q properties | grep "version:" | cut -d ' ' -f 2
 
     - name: Release
       uses: softprops/action-gh-release@v1

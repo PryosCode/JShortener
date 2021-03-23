@@ -1,4 +1,8 @@
-[![Build](https://github.com/PryosCode/JShortener/actions/workflows/gradle.yml/badge.svg)](https://github.com/PryosCode/JShortener/actions/workflows/gradle.yml)
+<p align="center">
+    <a href="https://hub.docker.com/r/pryoscode/jshortener"><img alt="Docker" src="https://img.shields.io/docker/pulls/pryoscode/jshortener?label=Pulls"></a>
+    <a href="https://github.com/PryosCode/JShortener/releases"><img alt="Build" src="https://github.com/PryosCode/JShortener/actions/workflows/gradle.yml/badge.svg"></a>
+    <a href="https://discord.gg/bF2GRHq"><img alt="Discord" src="https://discord.com/api/guilds/350302354639290379/widget.png"></a>
+</p>
 
 # JShortener
 
