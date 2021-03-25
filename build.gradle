@@ -4,7 +4,7 @@ plugins {
 }
 
 group "net.pryoscode"
-version "1.7"
+version "1.8"
 
 repositories {
     mavenCentral()
@@ -24,6 +24,6 @@ shadowJar {
 dependencies {
     implementation group: "org.eclipse.persistence", name: "eclipselink", version: "3.0.0"
     implementation group: "jakarta.persistence", name: "jakarta.persistence-api", version: "3.0.0"
-    implementation group: "org.xerial", name: "sqlite-jdbc", version: "3.34.0"
     implementation group: "mysql", name: "mysql-connector-java", version: "8.0.23"
+    implementation group: "org.xerial", name: "sqlite-jdbc", version: "3.34.0"
 }

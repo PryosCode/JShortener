@@ -9,11 +9,14 @@ public class Config {
     private final String webRoot;
     private final String web404;
 
+    private final String dbType;
     private final String dbHost;
     private final int dbPort;
     private final String dbName;
     private final String dbUser;
     private final String dbPassword;
+
+    private final int vmThreads;
 
     public Config() {
         webPort = getEnvInt("WEB_PORT", 80);
@@ -21,11 +24,14 @@ public class Config {
         webRoot = getEnvString("WEB_ROOT", "https://github.com/PryosCode/JShortener");
         web404 = getEnvString("WEB_404", "https://github.com/PryosCode/JShortener");
 
+        dbType = getEnvString("DB_TYPE", "sqlite");
         dbHost = getEnvString("DB_HOST", "127.0.0.1");
         dbPort = getEnvInt("DB_PORT", 3306);
         dbName = getEnvString("DB_NAME", "jshortener");
         dbUser = getEnvString("DB_USER", "root");
         dbPassword = getEnvString("DB_PASSWORD", "");
+
+        vmThreads = getEnvInt("VM_THREADS", 10);
     }
 
     public int getWebPort() {
@@ -42,6 +48,10 @@ public class Config {
 
     public String getWeb404() {
         return web404;
+    }
+
+    public String getDbType() {
+        return dbType;
     }
 
     public String getDbHost() {
@@ -62,6 +72,10 @@ public class Config {
 
     public String getDbPassword() {
         return dbPassword;
+    }
+
+    public int getVmThreads() {
+        return vmThreads;
     }
 
     private String getEnvString(String name, String def) {

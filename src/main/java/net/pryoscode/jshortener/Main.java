@@ -2,17 +2,16 @@ package net.pryoscode.jshortener;
 
 import net.pryoscode.jshortener.log.Log;
 import net.pryoscode.jshortener.sql.Database;
-import net.pryoscode.jshortener.web.WebServer;
 
 public class Main {
 
     public static void main(String[] args) {
         try {
             Log.setup();
+            Log.warning("CommandManager is currently under construction.");
             Config config = new Config();
             Database database = new Database(config);
-            database.setup();
-            WebServer server = new WebServer(database, config);
+            Server server = new Server(database, config);
             server.start();
         } catch (Exception e) {
             Log.severe(e);
