@@ -23,6 +23,7 @@ docker run -ti -v $PWD:/jshortener pryoscode/jshortener
 ### Java
 
 [JShortener.jar](https://github.com/PryosCode/JShortener/releases)
+
 [JRE-11](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
 
 ```bash
