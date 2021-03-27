@@ -43,3 +43,7 @@ java -jar -DJS_WEB_PORT=8080 JShortener.jar
 | JS_DB_USER     | String         | root                                    |
 | JS_DB_PASSWORD | String         |                                         |
 | JS_VM_THREADS  | Integer        | 10                                      |
+
+## License
+
+[Apache License 2.0](LICENSE)
