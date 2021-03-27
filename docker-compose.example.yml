@@ -32,3 +32,5 @@ services:
       JS_DB_USER: "jshortener"
       JS_DB_PASSWORD: "0123456789"
       JS_VM_THREADS: 10
+    volumes:
+      - "./jshortener:/jshortener:rw"

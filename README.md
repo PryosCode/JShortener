@@ -14,7 +14,11 @@ Simple Java URL Shortener with easy deployment in mind.
 
 ### Docker
 
-You can use either a [docker-compose.yml](docker-compose.example.yml) or a run command and use [pryoscode/jshortener](https://hub.docker.com/r/pryoscode/jshortener) the official Docker image.
+```bash
+docker run -ti -v $PWD:/jshortener pryoscode/jshortener
+```
+
+[docker-compose.yml](docker-compose.example.yml)
 
 ### Java
 
