@@ -1,3 +1,5 @@
+<a href="#download"><img align="center" width="100%" alt="JShortener" src="img/figlet.png"></a>
+
 <p align="center">
     <a href="https://github.com/PryosCode/JShortener/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/PryosCode/JShortener/total?label=Downloads"></a>
     <a href="https://hub.docker.com/r/pryoscode/jshortener"><img alt="Pulls" src="https://img.shields.io/docker/pulls/pryoscode/jshortener?label=Pulls"></a>
