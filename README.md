@@ -2,7 +2,7 @@
     <a href="https://github.com/PryosCode/JShortener/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/PryosCode/JShortener/total?label=Downloads"></a>
     <a href="https://hub.docker.com/r/pryoscode/jshortener"><img alt="Pulls" src="https://img.shields.io/docker/pulls/pryoscode/jshortener?label=Pulls"></a>
     <a href="https://github.com/PryosCode/JShortener/releases"><img alt="Build" src="https://github.com/PryosCode/JShortener/actions/workflows/gradle.yml/badge.svg"></a>
-    <a href=""><img alt="License" src="https://img.shields.io/github/license/PryosCode/JShortener?label=License"></a>    
+    <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/PryosCode/JShortener?label=License"></a>    
     <a href="https://discord.gg/bF2GRHq"><img alt="Discord" src="https://discord.com/api/guilds/350302354639290379/widget.png"></a>
 </p>
 
