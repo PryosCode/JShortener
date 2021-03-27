@@ -14,11 +14,11 @@ Simple Java URL Shortener with easy deployment in mind.
 
 ### Docker
 
+- [docker-compose.yml](docker-compose.example.yml)
+
 ```bash
 docker run -ti -p 80:80 -v $PWD:/jshortener pryoscode/jshortener
 ```
-
-[docker-compose.yml](docker-compose.example.yml)
 
 ### Java
 
