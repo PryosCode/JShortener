@@ -1,4 +1,6 @@
+<br><br><br><br><br>
 <a href="#download"><img align="center" width="100%" alt="JShortener" src="img/figlet.png"></a>
+<br><br><br><br><br>
 
 <p align="center">
     <a href="https://github.com/PryosCode/JShortener/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/PryosCode/JShortener/total?label=Downloads"></a>
