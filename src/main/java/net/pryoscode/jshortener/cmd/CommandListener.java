@@ -19,11 +19,8 @@ public class CommandListener {
         }
         thread = new Thread(() -> {
             Scanner scanner = new Scanner(System.in);
-            System.out.print("> ");
-            while (scanner.hasNext()) {
+            while (scanner.hasNext())
                 onSubmit(scanner.nextLine().trim().toLowerCase());
-                System.out.print("> ");
-            }
             scanner.close();
         });
     }

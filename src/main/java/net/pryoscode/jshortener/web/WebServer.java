@@ -31,7 +31,7 @@ public class WebServer {
                         request.getResponseHeaders().add("Location", config.getWeb404());
                     } else {
                         database.addClick(new Click(link, request));
-                        Log.info(slug + " -> " + link.getUrl());
+                        Log.info(slug + " --> " + link.getUrl());
                         request.getResponseHeaders().add("Location", link.getUrl());
                     }
                 } else {

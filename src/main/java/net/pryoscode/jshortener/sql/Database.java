@@ -30,7 +30,7 @@ public class Database {
         }
     }
 
-    public void addURL(Link link) {
+    public void addLink(Link link) {
         manager.getTransaction().begin();
         manager.persist(link);
         manager.getTransaction().commit();

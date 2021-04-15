@@ -1,7 +1,6 @@
 version: "3"
 
 services:
-
   database:
     image: mariadb:latest
     container_name: Database
@@ -20,7 +19,7 @@ services:
     container_name: JShortener
     restart: always
     ports:
-    - 80:80
+      - 80:80
     environment:
       JS_WEB_PORT: 80
       JS_WEB_STATUS: 302

@@ -9,7 +9,7 @@ public class list extends Command {
 
     @Override
     public void onExecute(String[] args) {
-        Log.info("TODO");
+        Log.warning("TODO");
     }
 
 }
