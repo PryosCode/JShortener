@@ -22,7 +22,8 @@ public class Click {
     @ManyToOne
     private Link link;
 
-    public Click() {}
+    public Click() {
+    }
 
     public Click(Link link, HttpExchange request) {
         this.link = link;

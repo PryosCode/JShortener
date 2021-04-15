@@ -82,11 +82,11 @@ public class Config {
         String term = (PREFIX + "_" + name).toUpperCase();
 
         String env = System.getenv(term);
-        if(env != null)
+        if (env != null)
             return env;
 
         String prop = System.getProperty(term);
-        if(prop != null)
+        if (prop != null)
             return prop;
 
         return def;

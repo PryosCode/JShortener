@@ -7,7 +7,8 @@ public class Log {
 
     private static Logger logger;
 
-    private Log() {}
+    private Log() {
+    }
 
     public static void setup() {
         LogManager.getLogManager().reset();
@@ -39,8 +40,9 @@ public class Log {
 
     public static void severe(Exception exception) {
         logger.severe(exception.getMessage());
-        for(StackTraceElement trace : exception.getStackTrace())
-            logger.severe(trace.getFileName() + "/" + trace.getClassName() + "#" + trace.getMethodName() + ":" + trace.getLineNumber());
+        for (StackTraceElement trace : exception.getStackTrace())
+            logger.severe(trace.getFileName() + "/" + trace.getClassName() + "#" + trace.getMethodName() + ":"
+                    + trace.getLineNumber());
     }
 
 }

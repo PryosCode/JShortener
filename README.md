@@ -1,12 +1,12 @@
 <br><br><br><br><br>
-<a href="#download"><img align="center" width="100%" alt="JShortener" src="img/figlet.png"></a>
+<a href="https://github.com/PryosCode/JShortener/blob/master/img/figlet.png"><img align="center" width="100%" alt="JShortener" src="https://github.com/PryosCode/JShortener/raw/master/img/figlet.png"></a>
 <br><br><br><br><br>
 
 <p align="center">
     <a href="https://github.com/PryosCode/JShortener/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/PryosCode/JShortener/total?label=Downloads"></a>
     <a href="https://hub.docker.com/r/pryoscode/jshortener"><img alt="Pulls" src="https://img.shields.io/docker/pulls/pryoscode/jshortener?label=Pulls"></a>
-    <a href="https://github.com/PryosCode/JShortener/releases"><img alt="Build" src="https://github.com/PryosCode/JShortener/actions/workflows/gradle.yml/badge.svg"></a>
-    <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/PryosCode/JShortener?label=License"></a>    
+    <a href="https://github.com/PryosCode/JShortener/actions"><img alt="Build" src="https://github.com/PryosCode/JShortener/actions/workflows/gradle.yml/badge.svg"></a>
+    <a href="https://github.com/PryosCode/JShortener/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/PryosCode/JShortener?label=License"></a>    
     <a href="https://discord.gg/bF2GRHq"><img alt="Discord" src="https://discord.com/api/guilds/350302354639290379/widget.png"></a>
 </p>
 
@@ -19,12 +19,14 @@ Simple Java URL Shortener with easy deployment in mind.
 ### Docker
 
 #### Run
+
 ```bash
 docker run -ti -p 80:80 -v $PWD:/jshortener pryoscode/jshortener
 ```
 
 #### Compose
-[docker-compose.yml](docker-compose.example.yml)
+
+[docker-compose.yml](https://github.com/PryosCode/JShortener/blob/master/docker-compose.example.yml)
 
 ### Java
 
@@ -38,7 +40,7 @@ java -jar -DJS_WEB_PORT=8080 JShortener.jar
 ## Config
 
 | VARIABLE       | TYPE           | DEFAULT                                 |
-|----------------|----------------|-----------------------------------------|
+| -------------- | -------------- | --------------------------------------- |
 | JS_WEB_PORT    | Integer        | 80                                      |
 | JS_WEB_STATUS  | Integer        | 302                                     |
 | JS_WEB_ROOT    | String         | https://github.com/PryosCode/JShortener |
@@ -52,4 +54,4 @@ java -jar -DJS_WEB_PORT=8080 JShortener.jar
 
 ## License
 
-[Apache License 2.0](LICENSE)
+[Apache License 2.0](https://github.com/PryosCode/JShortener/blob/master/LICENSE)

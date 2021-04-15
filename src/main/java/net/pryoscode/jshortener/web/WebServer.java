@@ -1,6 +1,7 @@
-package net.pryoscode.jshortener;
+package net.pryoscode.jshortener.web;
 
 import com.sun.net.httpserver.HttpServer;
+import net.pryoscode.jshortener.Config;
 import net.pryoscode.jshortener.log.Log;
 import net.pryoscode.jshortener.sql.Database;
 import net.pryoscode.jshortener.sql.entities.Click;
@@ -11,18 +12,18 @@ import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Server {
+public class WebServer {
 
     private final HttpServer server;
     private final ExecutorService executor;
 
-    public Server(Database database, Config config) throws IOException {
+    public WebServer(Database database, Config config) throws IOException {
         server = HttpServer.create(new InetSocketAddress(config.getWebPort()), 0);
         executor = Executors.newFixedThreadPool(config.getVmThreads());
         server.createContext("/", request -> executor.submit(() -> {
             try {
                 String[] uri = request.getRequestURI().getPath().split("/");
-                if(uri.length > 0) {
+                if (uri.length > 0) {
                     String slug = URLEncoder.encode(uri[1], StandardCharsets.UTF_8.toString());
 
                     Link link = database.getLink(slug);
