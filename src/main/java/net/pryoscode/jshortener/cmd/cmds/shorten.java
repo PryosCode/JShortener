@@ -27,9 +27,9 @@ public class shorten extends Command {
                 slug = slug + chars[new Random().nextInt(chars.length)];
 
         if (args[0].startsWith("http://") || args[0].startsWith("https://")) {
-            if (getDatabase().getLink(slug) == null) {
+            if (getDatabase().getLinkBySlug(slug) == null) {
                 getDatabase().addLink(new Link(slug, args[0]));
-                Log.info(slug);
+                Log.info(slug + " --> " + args[0]);
             } else {
                 Log.info(slug + " already exists.");
             }

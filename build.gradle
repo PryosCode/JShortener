@@ -5,7 +5,7 @@ plugins {
 }
 
 group "net.pryoscode"
-version "1.9.1"
+version "1.9.2"
 
 application {
     mainClass = project.group + "." + project.name.toLowerCase() + ".Main"

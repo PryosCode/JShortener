@@ -10,6 +10,7 @@ import net.pryoscode.jshortener.Config;
 import net.pryoscode.jshortener.sql.entities.Click;
 import net.pryoscode.jshortener.sql.entities.Link;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Database {
@@ -42,7 +43,7 @@ public class Database {
         manager.getTransaction().commit();
     }
 
-    public Link getLink(String slug) {
+    public Link getLinkBySlug(String slug) {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Link> criteria = builder.createQuery(Link.class);
         Root<Link> root = criteria.from(Link.class);
@@ -54,6 +55,15 @@ public class Database {
         } catch (Exception ignored) {
         }
         return null;
+    }
+
+    public List<Link> getLinks() {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Link> criteria = builder.createQuery(Link.class);
+        Root<Link> root = criteria.from(Link.class);
+        CriteriaQuery<Link> query = criteria.select(root);
+        TypedQuery<Link> typed = manager.createQuery(query);
+        return typed.getResultList();
     }
 
 }

@@ -26,7 +26,7 @@ public class WebServer {
                 if (uri.length > 0) {
                     String slug = URLEncoder.encode(uri[1], StandardCharsets.UTF_8.toString());
 
-                    Link link = database.getLink(slug);
+                    Link link = database.getLinkBySlug(slug);
                     if (link == null) {
                         request.getResponseHeaders().add("Location", config.getWeb404());
                     } else {
