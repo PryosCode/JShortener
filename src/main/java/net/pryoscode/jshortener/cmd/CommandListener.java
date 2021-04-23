@@ -20,7 +20,7 @@ public class CommandListener {
         thread = new Thread(() -> {
             Scanner scanner = new Scanner(System.in);
             while (scanner.hasNext())
-                onSubmit(scanner.nextLine().trim().toLowerCase());
+                onSubmit(scanner.nextLine().trim());
             scanner.close();
         });
     }
