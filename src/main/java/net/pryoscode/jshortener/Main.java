@@ -10,7 +10,6 @@ public class Main {
     public static void main(String[] args) {
         try {
             Log.setup();
-            Log.info("To list all commands: help");
             Config config = new Config();
             Database database = new Database(config);
             new CommandListener(database).start();

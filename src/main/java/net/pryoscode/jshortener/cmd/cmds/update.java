@@ -15,8 +15,7 @@ public class update extends Command {
     @Override
     public void onExecute(String[] args) {
         try {
-            Scanner scanner = new Scanner(
-                    new URL("https://api.github.com/repos/PryosCode/JShortener/releases").openStream());
+            Scanner scanner = new Scanner(new URL("https://api.github.com/repos/PryosCode/JShortener/releases").openStream());
             StringBuffer builder = new StringBuffer();
             while (scanner.hasNext())
                 builder.append(scanner.next());

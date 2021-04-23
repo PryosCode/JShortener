@@ -5,11 +5,8 @@ plugins {
 }
 
 group "net.pryoscode"
-version "1.9.2"
-
-application {
-    mainClass = project.group + "." + project.name.toLowerCase() + ".Main"
-}
+version "2.0.0"
+mainClassName = project.group + "." + project.name.toLowerCase() + ".Main"
 
 repositories {
     mavenCentral()
@@ -21,9 +18,8 @@ shadowJar {
                    "Implementation-Version": project.version,
                    "Main-Class": project.group + "." + project.name.toLowerCase() + ".Main"
     }
-    mainClassName = project.group + "." + project.name.toLowerCase() + ".Main"
     project.configurations.implementation.canBeResolved = true
-    configurations = [project.configurations.implementation]
+    configurations = [ project.configurations.implementation ]
     archiveFileName = project.name + ".jar"
 }
 
@@ -33,4 +29,5 @@ dependencies {
     implementation group: "mysql", name: "mysql-connector-java", version: "8.0.23"
     implementation group: "org.xerial", name: "sqlite-jdbc", version: "3.34.0"
     implementation group: "com.google.code.gson", name: "gson", version: "2.8.6"
+    implementation group: "org.apache.commons", name: "commons-lang3", version: "3.12.0"
 }

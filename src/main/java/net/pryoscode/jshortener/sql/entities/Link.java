@@ -23,8 +23,7 @@ public class Link {
     @OneToMany(mappedBy = "link")
     private List<Click> clicks;
 
-    public Link() {
-    }
+    private Link() {}
 
     public Link(String slug, String url) {
         this.slug = slug;
@@ -38,6 +37,10 @@ public class Link {
 
     public String getUrl() {
         return url;
+    }
+
+    public List<Click> getClicks() {
+        return clicks;
     }
 
 }

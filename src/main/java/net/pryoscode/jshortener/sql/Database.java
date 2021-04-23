@@ -20,8 +20,7 @@ public class Database {
     public Database(Config config) {
         Map<String, String> properties = new HashMap<>();
         if (config.getDbType().equalsIgnoreCase("mysql")) {
-            properties.put("jakarta.persistence.jdbc.url",
-                    "jdbc:mysql://" + config.getDbHost() + ":" + config.getDbPort() + "/" + config.getDbName());
+            properties.put("jakarta.persistence.jdbc.url", "jdbc:mysql://" + config.getDbHost() + ":" + config.getDbPort() + "/" + config.getDbName());
             properties.put("jakarta.persistence.jdbc.user", config.getDbUser());
             properties.put("jakarta.persistence.jdbc.password", config.getDbPassword());
             manager = Persistence.createEntityManagerFactory("MySQL", properties).createEntityManager();
@@ -37,10 +36,17 @@ public class Database {
         manager.getTransaction().commit();
     }
 
+    public void removeLink(Link link) {
+        manager.getTransaction().begin();
+        manager.remove(link);
+        manager.getTransaction().commit();
+    }
+
     public void addClick(Click click) {
         manager.getTransaction().begin();
         manager.persist(click);
         manager.getTransaction().commit();
+        manager.refresh(click.getLink());
     }
 
     public Link getLinkBySlug(String slug) {
@@ -52,8 +58,7 @@ public class Database {
         TypedQuery<Link> typed = manager.createQuery(criteria);
         try {
             return typed.getSingleResult();
-        } catch (Exception ignored) {
-        }
+        } catch (Exception ignored) {}
         return null;
     }
 

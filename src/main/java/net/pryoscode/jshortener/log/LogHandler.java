@@ -13,16 +13,13 @@ public class LogHandler extends Handler {
             color = LogColor.YELLOW;
         else if (Level.SEVERE.equals(record.getLevel()))
             color = LogColor.RED;
-        System.out.println(
-                color + "[" + record.getLevel().getName().toUpperCase() + "] " + record.getMessage() + LogColor.RESET);
+        System.out.println(color + "[" + record.getLevel().getName().toUpperCase() + "] " + record.getMessage() + LogColor.RESET);
     }
 
     @Override
-    public void flush() {
-    }
+    public void flush() {}
 
     @Override
-    public void close() throws SecurityException {
-    }
+    public void close() throws SecurityException {}
 
 }

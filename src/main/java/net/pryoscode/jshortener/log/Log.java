@@ -7,8 +7,7 @@ public class Log {
 
     private static Logger logger;
 
-    private Log() {
-    }
+    private Log() {}
 
     public static void setup() {
         LogManager.getLogManager().reset();
@@ -24,6 +23,7 @@ public class Log {
         info("/ /_/ /___/ / / / / /_/ / /  / /_/  __/ / / /  __/ /    ");
         info("\\____//____/_/ /_/\\____/_/   \\__/\\___/_/ /_/\\___/_/     ");
         info("                                                        ");
+        info("To list all commands: help");
     }
 
     public static void info(String message) {
@@ -41,8 +41,7 @@ public class Log {
     public static void severe(Exception exception) {
         logger.severe(exception.getMessage());
         for (StackTraceElement trace : exception.getStackTrace())
-            logger.severe(trace.getFileName() + "/" + trace.getClassName() + "#" + trace.getMethodName() + ":"
-                    + trace.getLineNumber());
+            logger.severe(trace.getFileName() + "/" + trace.getClassName() + "#" + trace.getMethodName() + ":" + trace.getLineNumber());
     }
 
 }

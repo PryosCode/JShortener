@@ -22,8 +22,7 @@ public class Click {
     @ManyToOne
     private Link link;
 
-    public Click() {
-    }
+    private Click() {}
 
     public Click(Link link, HttpExchange request) {
         this.link = link;
@@ -32,6 +31,10 @@ public class Click {
         ip = ip.trim();
         userAgent = request.getRequestHeaders().getFirst("User-agent").trim();
         timestamp = new Date();
+    }
+
+    public Link getLink() {
+        return link;
     }
 
 }
