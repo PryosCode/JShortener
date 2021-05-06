@@ -1,5 +1,5 @@
 <br><br><br><br><br>
-<a href="https://github.com/PryosCode/JShortener/blob/master/img/figlet.png"><img align="center" width="100%" alt="JShortener" src="https://github.com/PryosCode/JShortener/raw/master/img/figlet.png"></a>
+<a href="https://github.com/PryosCode/JShortener/blob/master/img/figlet.txt"><img align="center" width="100%" alt="JShortener" src="https://github.com/PryosCode/JShortener/raw/master/img/figlet.png"></a>
 <br><br><br><br><br>
 
 <p align="center">
