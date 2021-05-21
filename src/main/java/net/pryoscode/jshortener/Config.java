@@ -18,7 +18,7 @@ public class Config {
     private static final String dbUser = getEnvString("DB_USER", "root");
     private static final String dbPassword = getEnvString("DB_PASSWORD", "");
 
-    private static final int vmThreads = getEnvInt("VM_THREADS", 3);
+    private static final int vmThreads = getEnvInt("VM_THREADS", 5);
 
     private Config() {}
 

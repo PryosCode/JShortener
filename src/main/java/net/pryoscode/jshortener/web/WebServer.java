@@ -6,13 +6,12 @@ import net.pryoscode.jshortener.log.Log;
 import net.pryoscode.jshortener.sql.Database;
 import net.pryoscode.jshortener.sql.entities.Click;
 import net.pryoscode.jshortener.sql.entities.Link;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -28,17 +27,11 @@ public class WebServer {
 
         if (Config.getWeb404().isEmpty()) {
             try {
-                InputStream iStream = getClass().getClassLoader().getResourceAsStream("html/404.html");
-                InputStreamReader isReader = new InputStreamReader(iStream);
-                BufferedReader bReader = new BufferedReader(isReader);
-                StringBuffer sBuffer = new StringBuffer();
-                String line;
-                while ((line = bReader.readLine()) != null)
-                    sBuffer.append(line);
-                notFound = sBuffer.toString();
-                bReader.close();
-                isReader.close();
-                iStream.close();
+                InputStream stream = getClass().getClassLoader().getResourceAsStream("html/404.html");
+                Scanner scanner = new Scanner(stream).useDelimiter("\\Z");
+                notFound = scanner.next();
+                scanner.close();
+                stream.close();
             } catch (Exception e) {
                 Log.severe(e);
             }

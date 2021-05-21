@@ -15,11 +15,9 @@ public class update extends Command {
     @Override
     public void onExecute(String[] args) {
         try {
-            Scanner scanner = new Scanner(new URL("https://api.github.com/repos/PryosCode/JShortener/releases").openStream());
-            StringBuffer builder = new StringBuffer();
-            while (scanner.hasNext())
-                builder.append(scanner.next());
-            JsonArray array = new Gson().fromJson(builder.toString(), JsonArray.class);
+            Scanner scanner = new Scanner(new URL("https://api.github.com/repos/PryosCode/JShortener/releases").openStream()).useDelimiter("\\Z");
+            JsonArray array = new Gson().fromJson(scanner.next(), JsonArray.class);
+            scanner.close();
 
             if (array.size() > 0) {
                 JsonObject object = array.get(0).getAsJsonObject();
