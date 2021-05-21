@@ -17,15 +17,15 @@ public class Database {
 
     private final EntityManager manager;
 
-    public Database(Config config) {
+    public Database() {
         Map<String, String> properties = new HashMap<>();
-        if (config.getDbType().equalsIgnoreCase("mysql")) {
-            properties.put("jakarta.persistence.jdbc.url", "jdbc:mysql://" + config.getDbHost() + ":" + config.getDbPort() + "/" + config.getDbName());
-            properties.put("jakarta.persistence.jdbc.user", config.getDbUser());
-            properties.put("jakarta.persistence.jdbc.password", config.getDbPassword());
+        if (Config.getDbType().equalsIgnoreCase("mysql")) {
+            properties.put("jakarta.persistence.jdbc.url", "jdbc:mysql://" + Config.getDbHost() + ":" + Config.getDbPort() + "/" + Config.getDbName());
+            properties.put("jakarta.persistence.jdbc.user", Config.getDbUser());
+            properties.put("jakarta.persistence.jdbc.password", Config.getDbPassword());
             manager = Persistence.createEntityManagerFactory("MySQL", properties).createEntityManager();
         } else {
-            properties.put("jakarta.persistence.jdbc.url", "jdbc:sqlite:" + config.getDbName() + ".db");
+            properties.put("jakarta.persistence.jdbc.url", "jdbc:sqlite:" + Config.getDbName() + ".db");
             manager = Persistence.createEntityManagerFactory("SQLite", properties).createEntityManager();
         }
     }

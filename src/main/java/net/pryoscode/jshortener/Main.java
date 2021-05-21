@@ -10,10 +10,9 @@ public class Main {
     public static void main(String[] args) {
         try {
             Log.setup();
-            Config config = new Config();
-            Database database = new Database(config);
+            Database database = new Database();
             new CommandListener(database).start();
-            new WebServer(database, config).start();
+            new WebServer(database).start();
         } catch (Exception e) {
             Log.severe(e);
         }

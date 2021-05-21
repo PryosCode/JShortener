@@ -4,7 +4,7 @@ import net.pryoscode.jshortener.cmd.Command;
 import net.pryoscode.jshortener.cmd.CommandInfo;
 import net.pryoscode.jshortener.log.Log;
 
-@CommandInfo(name = "version", description = "Show Build Version")
+@CommandInfo(name = "version", description = "Show Build version")
 public class version extends Command {
 
     @Override

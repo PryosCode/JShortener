@@ -5,7 +5,7 @@ import java.util.List;
 import net.pryoscode.jshortener.cmd.CommandInfo.CommandArgument;
 import net.pryoscode.jshortener.sql.Database;
 
-public abstract class Command {
+public abstract class Command implements Comparable<Command> {
 
     private final String name;
     private final String description;
@@ -57,6 +57,11 @@ public abstract class Command {
         for (Argument argument : arguments)
             args.append(argument).append(" ");
         return (name + " " + args.toString()).trim();
+    }
+
+    @Override
+    public int compareTo(Command o) {
+        return name.compareTo(o.name);
     }
 
     public class Argument {

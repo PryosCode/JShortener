@@ -1,12 +1,8 @@
 package net.pryoscode.jshortener.cmd;
 
-import net.pryoscode.jshortener.cmd.cmds.help;
-import net.pryoscode.jshortener.cmd.cmds.list;
-import net.pryoscode.jshortener.cmd.cmds.remove;
-import net.pryoscode.jshortener.cmd.cmds.shorten;
-import net.pryoscode.jshortener.cmd.cmds.update;
-import net.pryoscode.jshortener.cmd.cmds.version;
+import net.pryoscode.jshortener.cmd.cmds.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CommandManager {
@@ -15,11 +11,14 @@ public class CommandManager {
 
     public CommandManager() {
         commands.add(new help());
-        commands.add(new remove());
+        commands.add(new exit());
         commands.add(new list());
+        commands.add(new remove());
         commands.add(new shorten());
-        commands.add(new update());
         commands.add(new version());
+        commands.add(new update());
+
+        Collections.sort(commands);
     }
 
     public List<Command> getCommands() {

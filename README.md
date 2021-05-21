@@ -39,18 +39,19 @@ java -jar -DJS_WEB_PORT=8080 JShortener.jar
 
 ## Config
 
-| VARIABLE       | TYPE           | DEFAULT                                 |
-| -------------- | -------------- | --------------------------------------- |
-| JS_WEB_PORT    | Integer        | 80                                      |
-| JS_WEB_STATUS  | Integer        | 302                                     |
-| JS_WEB_ROOT    | String         | https://github.com/PryosCode/JShortener |
-| JS_WEB_404     | String         | https://github.com/PryosCode/JShortener |
-| JS_DB_TYPE     | sqlite / mysql | sqlite                                  |
-| JS_DB_HOST     | String         | 127.0.0.1                               |
-| JS_DB_PORT     | Integer        | 3306                                    |
-| JS_DB_USER     | String         | root                                    |
-| JS_DB_PASSWORD | String         |                                         |
-| JS_VM_THREADS  | Integer        | 10                                      |
+| VARIABLE        | TYPE           | DEFAULT                                 |
+|-----------------|----------------|-----------------------------------------|
+| JS_SHORT_LENGTH | Integer        | 5                                       |
+| JS_WEB_PORT     | Integer        | 80                                      |
+| JS_WEB_STATUS   | Integer        | 302                                     |
+| JS_WEB_ROOT     | String         | https://github.com/PryosCode/JShortener |
+| JS_WEB_404      | String         |                                         |
+| JS_DB_TYPE      | sqlite / mysql | sqlite                                  |
+| JS_DB_HOST      | String         | 127.0.0.1                               |
+| JS_DB_PORT      | Integer        | 3306                                    |
+| JS_DB_USER      | String         | root                                    |
+| JS_DB_PASSWORD  | String         |                                         |
+| JS_VM_THREADS   | Integer        | 3                                       |
 
 ## License
 

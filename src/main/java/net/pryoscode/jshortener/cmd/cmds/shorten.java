@@ -1,6 +1,7 @@
 package net.pryoscode.jshortener.cmd.cmds;
 
 import java.util.Random;
+import net.pryoscode.jshortener.Config;
 import net.pryoscode.jshortener.cmd.Command;
 import net.pryoscode.jshortener.cmd.CommandInfo;
 import net.pryoscode.jshortener.cmd.CommandInfo.CommandArgument;
@@ -22,7 +23,7 @@ public class shorten extends Command {
         if (args.length > 1)
             slug = args[1];
         else
-            for (int i = 0; i <= 5; i++)
+            for (int i = 0; i <= Config.getShortLength(); i++)
                 slug = slug + CHARS[new Random().nextInt(CHARS.length)];
 
         if (args[0].startsWith("http://") || args[0].startsWith("https://")) {
