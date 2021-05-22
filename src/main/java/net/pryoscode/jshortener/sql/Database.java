@@ -19,13 +19,13 @@ public class Database {
 
     public Database() {
         Map<String, String> properties = new HashMap<>();
-        if (Config.getDbType().equalsIgnoreCase("mysql")) {
-            properties.put("jakarta.persistence.jdbc.url", "jdbc:mysql://" + Config.getDbHost() + ":" + Config.getDbPort() + "/" + Config.getDbName());
-            properties.put("jakarta.persistence.jdbc.user", Config.getDbUser());
-            properties.put("jakarta.persistence.jdbc.password", Config.getDbPassword());
+        if (Config.dbType.equalsIgnoreCase("mysql")) {
+            properties.put("jakarta.persistence.jdbc.url", "jdbc:mysql://" + Config.dbHost + ":" + Config.dbPort + "/" + Config.dbName);
+            properties.put("jakarta.persistence.jdbc.user", Config.dbUser);
+            properties.put("jakarta.persistence.jdbc.password", Config.dbPassword);
             manager = Persistence.createEntityManagerFactory("MySQL", properties).createEntityManager();
         } else {
-            properties.put("jakarta.persistence.jdbc.url", "jdbc:sqlite:" + Config.getDbName() + ".db");
+            properties.put("jakarta.persistence.jdbc.url", "jdbc:sqlite:" + Config.dbName + ".db");
             manager = Persistence.createEntityManagerFactory("SQLite", properties).createEntityManager();
         }
     }

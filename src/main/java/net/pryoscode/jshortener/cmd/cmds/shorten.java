@@ -23,7 +23,7 @@ public class shorten extends Command {
         if (args.length > 1)
             slug = args[1];
         else
-            for (int i = 0; i <= Config.getShortLength(); i++)
+            for (int i = 0; i <= Config.shortLength; i++)
                 slug = slug + CHARS[new Random().nextInt(CHARS.length)];
 
         if (args[0].startsWith("http://") || args[0].startsWith("https://")) {

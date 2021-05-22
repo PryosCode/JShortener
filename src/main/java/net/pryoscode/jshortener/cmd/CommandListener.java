@@ -12,7 +12,7 @@ public class CommandListener {
     private final Thread thread;
 
     public CommandListener(Database database) {
-        this.manager = new CommandManager();
+        manager = new CommandManager();
         for (Command command : manager.getCommands()) {
             command.setDatabase(database);
             command.setCommandManager(manager);

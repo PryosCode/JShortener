@@ -1,11 +1,10 @@
 plugins {
-    id "java"
     id "application"
     id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
 group "net.pryoscode"
-version "2.1.1"
+version "2.1.2"
 mainClassName = project.group + "." + project.name.toLowerCase() + ".Main"
 
 repositories {
@@ -16,7 +15,7 @@ shadowJar {
     manifest {
         attributes "Implementation-Title": project.name,
                    "Implementation-Version": project.version,
-                   "Main-Class": project.group + "." + project.name.toLowerCase() + ".Main"
+                   "Main-Class": project.mainClassName
     }
     project.configurations.implementation.canBeResolved = true
     configurations = [ project.configurations.implementation ]

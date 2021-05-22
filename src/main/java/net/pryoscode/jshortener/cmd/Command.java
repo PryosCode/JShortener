@@ -14,9 +14,9 @@ public abstract class Command implements Comparable<Command> {
     private CommandManager commandManager;
 
     public Command() {
-        CommandInfo info = this.getClass().getAnnotation(CommandInfo.class);
-        this.name = info.name();
-        this.description = info.description();
+        CommandInfo info = getClass().getAnnotation(CommandInfo.class);
+        name = info.name();
+        description = info.description();
         for (CommandArgument argument : info.args())
             arguments.add(new Argument(argument));
     }
@@ -70,8 +70,8 @@ public abstract class Command implements Comparable<Command> {
         private boolean optional;
 
         public Argument(CommandArgument argument) {
-            this.name = argument.value();
-            this.optional = argument.optional();
+            name = argument.value();
+            optional = argument.optional();
         }
 
         public String getName() {

@@ -22,10 +22,10 @@ public class WebServer {
     private final ExecutorService executor;
 
     public WebServer(Database database) throws IOException {
-        server = HttpServer.create(new InetSocketAddress(Config.getWebPort()), 0);
-        executor = Executors.newFixedThreadPool(Config.getVmThreads());
+        server = HttpServer.create(new InetSocketAddress(Config.webPort), 0);
+        executor = Executors.newFixedThreadPool(Config.vmThreads);
 
-        if (Config.getWeb404().isEmpty()) {
+        if (Config.web404.isEmpty()) {
             try {
                 InputStream stream = getClass().getClassLoader().getResourceAsStream("html/404.html");
                 Scanner scanner = new Scanner(stream).useDelimiter("\\Z");
@@ -45,23 +45,23 @@ public class WebServer {
 
                     Link link = database.getLinkBySlug(slug);
                     if (link == null) {
-                        if (Config.getWeb404().isEmpty()) {
+                        if (Config.web404.isEmpty()) {
                             request.sendResponseHeaders(404, 0);
                             OutputStream stream = request.getResponseBody();
                             stream.write(notFound.getBytes());
                             stream.close();
                         } else {
-                            request.getResponseHeaders().add("Location", Config.getWeb404());
-                            request.sendResponseHeaders(Config.getWebStatus(), 0);
+                            request.getResponseHeaders().add("Location", Config.web404);
+                            request.sendResponseHeaders(Config.webStatus, 0);
                         }
                     } else {
                         database.addClick(new Click(link, request));
                         request.getResponseHeaders().add("Location", link.getUrl());
-                        request.sendResponseHeaders(Config.getWebStatus(), 0);
+                        request.sendResponseHeaders(Config.webStatus, 0);
                     }
                 } else {
-                    request.getResponseHeaders().add("Location", Config.getWebRoot());
-                    request.sendResponseHeaders(Config.getWebStatus(), 0);
+                    request.getResponseHeaders().add("Location", Config.webRoot);
+                    request.sendResponseHeaders(Config.webStatus, 0);
                 }
                 request.close();
             } catch (Exception e) {
