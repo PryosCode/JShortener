@@ -24,6 +24,7 @@ public class WebServer {
     public WebServer(Database database) throws IOException {
         server = HttpServer.create(new InetSocketAddress(Config.webPort), 0);
         executor = Executors.newFixedThreadPool(Config.vmThreads);
+        server.setExecutor(executor);
 
         if (Config.web404.isEmpty()) {
             try {

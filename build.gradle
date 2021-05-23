@@ -4,7 +4,7 @@ plugins {
 }
 
 group "net.pryoscode"
-version "2.1.2"
+version "2.1.3"
 mainClassName = project.group + "." + project.name.toLowerCase() + ".Main"
 
 repositories {
