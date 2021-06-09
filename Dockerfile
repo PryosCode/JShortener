@@ -1,14 +1,15 @@
 FROM openjdk:11-jdk-slim-buster
-ENV GRADLE_VERSION=7.0.0
 EXPOSE 80
 
 WORKDIR /gradle
 RUN apt-get update && \
     apt-get -y install git zip unzip && \
     git clone https://github.com/PryosCode/JShortener.git . && \
-    curl -s https://get.sdkman.io | bash && \
-    source $HOME/.sdkman/bin/sdkman-init.sh && \
-    sdk install gradle && \
+    GRADLE_VERSION=7.0.1 && \
+    wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -P /tmp && \
+    sudo unzip -d /opt/gradle /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
+    GRADLE_HOME=/opt/gradle/latest && \
+    PATH=${GRADLE_HOME}/bin:${PATH} && \
     gradle shadowJar
 
 WORKDIR /jshortener
