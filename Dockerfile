@@ -3,7 +3,7 @@ EXPOSE 80
 
 WORKDIR /gradle
 RUN apt-get update && \
-    apt-get -y install git unzip && \
+    apt-get -y install git curl unzip && \
     git clone https://github.com/PryosCode/JShortener.git . && \
     curl https://services.gradle.org/distributions/gradle-7.0.1-bin.zip -o gradle.zip && \
     unzip gradle.zip && \
