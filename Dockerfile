@@ -3,11 +3,11 @@ EXPOSE 80
 
 WORKDIR /gradle
 RUN apt-get update
-RUN apt-get -y install git curl unzip
+RUN apt-get -y install git curl
 RUN git clone https://github.com/PryosCode/JShortener.git .
 RUN curl https://services.gradle.org/distributions/gradle-7.1-bin.zip -o gradle.zip
+RUN tar -xvf gradle.zip
 RUN ls
-RUN unzip gradle.zip
 RUN chmod +x gradle-7.1/bin/gradle
 RUN ./gradle-7.1/bin/gradle shadowJar
 
