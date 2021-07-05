@@ -56,7 +56,7 @@ public class WebServer {
                             request.sendResponseHeaders(Config.webStatus, 0);
                         }
                     } else {
-                        database.addClick(new Click(link, request));
+                        database.persistClick(new Click(link, request));
                         request.getResponseHeaders().add("Location", link.getUrl());
                         request.sendResponseHeaders(Config.webStatus, 0);
                     }

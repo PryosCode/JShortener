@@ -9,7 +9,7 @@ public class version extends Command {
 
     @Override
     public void onExecute(String[] args) {
-        Log.info("JShortener Version " + getClass().getPackage().getImplementationVersion());
+        Log.info("JShortener v" + getClass().getPackage().getImplementationVersion());
     }
 
 }

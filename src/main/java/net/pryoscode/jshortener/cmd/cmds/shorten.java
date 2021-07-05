@@ -19,6 +19,7 @@ public class shorten extends Command {
 
     @Override
     public void onExecute(String[] args) {
+        String url = args[0];
         String slug = "";
         if (args.length > 1)
             slug = args[1];
@@ -26,10 +27,10 @@ public class shorten extends Command {
             for (int i = 0; i <= Config.shortLength; i++)
                 slug = slug + CHARS[new Random().nextInt(CHARS.length)];
 
-        if (args[0].startsWith("http://") || args[0].startsWith("https://")) {
+        if (url.startsWith("http://") || url.startsWith("https://")) {
             if (getDatabase().getLinkBySlug(slug) == null) {
-                getDatabase().addLink(new Link(slug, args[0]));
-                Log.info(slug + " --> " + args[0]);
+                getDatabase().persistLink(new Link(slug, url));
+                Log.info(slug + " --> " + url);
             } else {
                 Log.info(slug + " already exists.");
             }

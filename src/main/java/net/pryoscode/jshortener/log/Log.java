@@ -42,6 +42,7 @@ public class Log {
         logger.severe(exception.getMessage());
         for (StackTraceElement trace : exception.getStackTrace())
             logger.severe(trace.getFileName() + "/" + trace.getClassName() + "#" + trace.getMethodName() + ":" + trace.getLineNumber());
+        System.exit(1);
     }
 
 }

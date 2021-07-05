@@ -1,8 +1,16 @@
 package net.pryoscode.jshortener.sql.entities;
 
-import jakarta.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Link {
@@ -28,6 +36,7 @@ public class Link {
     public Link(String slug, String url) {
         this.slug = slug;
         this.url = url;
+        clicks = new ArrayList<>();
         created = new Date();
     }
 
@@ -41,6 +50,10 @@ public class Link {
 
     public List<Click> getClicks() {
         return clicks;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
 }

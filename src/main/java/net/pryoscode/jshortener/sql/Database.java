@@ -1,17 +1,17 @@
 package net.pryoscode.jshortener.sql;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
 import net.pryoscode.jshortener.Config;
 import net.pryoscode.jshortener.sql.entities.Click;
 import net.pryoscode.jshortener.sql.entities.Link;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 public class Database {
 
@@ -20,17 +20,17 @@ public class Database {
     public Database() {
         Map<String, String> properties = new HashMap<>();
         if (Config.dbType.equalsIgnoreCase("mysql")) {
-            properties.put("jakarta.persistence.jdbc.url", "jdbc:mysql://" + Config.dbHost + ":" + Config.dbPort + "/" + Config.dbName);
-            properties.put("jakarta.persistence.jdbc.user", Config.dbUser);
-            properties.put("jakarta.persistence.jdbc.password", Config.dbPassword);
-            manager = Persistence.createEntityManagerFactory("MySQL", properties).createEntityManager();
+            properties.put("hibernate.connection.url", "jdbc:mysql://" + Config.dbHost + ":" + Config.dbPort + "/" + Config.dbName);
+            properties.put("hibernate.connection.username", Config.dbUser);
+            properties.put("hibernate.connection.password", Config.dbPassword);
+            manager = Persistence.createEntityManagerFactory("mysql", properties).createEntityManager();
         } else {
-            properties.put("jakarta.persistence.jdbc.url", "jdbc:sqlite:" + Config.dbName + ".db");
-            manager = Persistence.createEntityManagerFactory("SQLite", properties).createEntityManager();
+            properties.put("hibernate.connection.url", "jdbc:sqlite:" + Config.dbName + ".db");
+            manager = Persistence.createEntityManagerFactory("sqlite", properties).createEntityManager();
         }
     }
 
-    public void addLink(Link link) {
+    public void persistLink(Link link) {
         manager.getTransaction().begin();
         manager.persist(link);
         manager.getTransaction().commit();
@@ -42,7 +42,7 @@ public class Database {
         manager.getTransaction().commit();
     }
 
-    public void addClick(Click click) {
+    public void persistClick(Click click) {
         manager.getTransaction().begin();
         manager.persist(click);
         manager.getTransaction().commit();

@@ -1,41 +1,29 @@
 package net.pryoscode.jshortener.cmd.cmds;
 
-import java.net.URL;
-import java.util.Scanner;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import net.pryoscode.jshortener.cmd.Command;
 import net.pryoscode.jshortener.cmd.CommandInfo;
+import net.pryoscode.jshortener.cmd.CommandInfo.CommandArgument;
 import net.pryoscode.jshortener.log.Log;
+import net.pryoscode.jshortener.sql.entities.Link;
 
-@CommandInfo(name = "update", description = "Check for updates")
+@CommandInfo(name = "update", description = "Update the URL of a Link", args = { @CommandArgument("slug"), @CommandArgument("url") })
 public class update extends Command {
 
     @Override
     public void onExecute(String[] args) {
-        try {
-            Scanner scanner = new Scanner(new URL("https://api.github.com/repos/PryosCode/JShortener/releases").openStream()).useDelimiter("\\Z");
-            JsonArray array = new Gson().fromJson(scanner.next(), JsonArray.class);
-            scanner.close();
-
-            if (array.size() > 0) {
-                JsonObject object = array.get(0).getAsJsonObject();
-                String current = getClass().getPackage().getImplementationVersion();
-                String github = object.get("tag_name").getAsString().replace("v", "");
-                Log.info("Current Version " + current);
-                Log.info("GitHub Version " + github);
-                if (current.equals(github)) {
-                    Log.info("You have the newest version.");
-                } else {
-                    Log.info("There is a new version available.");
-                    Log.info(object.get("html_url").getAsString());
-                }
+        String slug = args[0];
+        String url = args[1];
+        if (url.startsWith("http://") || url.startsWith("https://")) {
+            Link link = getDatabase().getLinkBySlug(slug);
+            if (link == null) {
+                Log.info(slug + " doesn't exists.");
             } else {
-                Log.info("There are no releases in this repository.");
+                link.setUrl(url);
+                getDatabase().persistLink(link);
+                Log.info(slug + " --> " + url);
             }
-        } catch (Exception e) {
-            Log.severe(e);
+        } else {
+            Log.info("Please specify a valid URL.");
         }
     }
 
