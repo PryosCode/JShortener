@@ -4,24 +4,33 @@ import net.pryoscode.jshortener.cmd.Command.Argument;
 import net.pryoscode.jshortener.log.Log;
 import net.pryoscode.jshortener.sql.Database;
 import java.util.Arrays;
-import java.util.Scanner;
+import org.jline.reader.EndOfFileException;
+import org.jline.reader.LineReader;
+import org.jline.reader.LineReaderBuilder;
+import org.jline.reader.UserInterruptException;
+import org.jline.terminal.Terminal;
+import org.jline.terminal.TerminalBuilder;
 
 public class CommandListener {
 
     private final CommandManager manager;
     private final Thread thread;
 
-    public CommandListener(Database database) {
+    public CommandListener(Database database) throws Exception {
         manager = new CommandManager();
         for (Command command : manager.getCommands()) {
             command.setDatabase(database);
             command.setCommandManager(manager);
         }
+
+        Terminal terminal = TerminalBuilder.builder().name("JShortener").build();
+        LineReader reader = LineReaderBuilder.builder().terminal(terminal).build();
+
         thread = new Thread(() -> {
-            Scanner scanner = new Scanner(System.in);
-            while (scanner.hasNext())
-                onSubmit(scanner.nextLine().trim());
-            scanner.close();
+            try {
+                while (true)
+                    onSubmit(reader.readLine("> ").trim());
+            } catch (UserInterruptException | EndOfFileException ignored) {}
         });
     }
 

@@ -16,7 +16,7 @@ public class update extends Command {
         if (url.startsWith("http://") || url.startsWith("https://")) {
             Link link = getDatabase().getLinkBySlug(slug);
             if (link == null) {
-                Log.info(slug + " doesn't exists.");
+                Log.info(slug + " doesn't exist.");
             } else {
                 link.setUrl(url);
                 getDatabase().persistLink(link);
