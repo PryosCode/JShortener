@@ -4,7 +4,7 @@ plugins {
 }
 
 group "net.pryoscode"
-version "2.3.0"
+version "2.4.0"
 mainClassName = project.group + "." + project.name.toLowerCase() + ".Main"
 sourceCompatibility = 11
 targetCompatibility = 11

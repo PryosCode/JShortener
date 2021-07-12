@@ -18,8 +18,6 @@ public class Config {
     public static final String dbUser = getEnvString("DB_USER", "root");
     public static final String dbPassword = getEnvString("DB_PASSWORD", "");
 
-    public static final int vmThreads = getEnvInt("VM_THREADS", 5);
-
     private Config() {}
 
     private static String getEnvString(String name, String def) {

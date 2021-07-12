@@ -31,4 +31,3 @@ services:
       JS_DB_PORT: 3306
       JS_DB_USER: "jshortener"
       JS_DB_PASSWORD: "0123456789"
-      JS_VM_THREADS: 5
